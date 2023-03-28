@@ -11,6 +11,6 @@ class OnlyLatest {
     private val protocolVersion = ProtocolVersion.values().maxByOrNull { it.protocol }!!
     @Subscribe
     fun on(event: ProxyPingEvent) {
-        event.ping = event.ping.asBuilder().version(ServerPing.Version(protocolVersion.protocol,protocolVersion.name)).build()
+        event.ping = event.ping.asBuilder().version(ServerPing.Version(protocolVersion.protocol,protocolVersion.mostRecentSupportedVersion)).build()
     }
 }
